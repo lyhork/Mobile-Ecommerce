@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:mobile_app/features/authentication/onboarding/onboarding_controller.dart';
+import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../onboarding/onboarding_controller.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/device/device_utility.dart';
@@ -14,7 +15,7 @@ class OnBoardingDotNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = OnBoardingController.instance;
+    final controller = Get.find<OnBoardingController>();
     final dark = THelperFuntions.isDarkMode(context);
 
     return Positioned(

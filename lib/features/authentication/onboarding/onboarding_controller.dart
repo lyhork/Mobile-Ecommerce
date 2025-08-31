@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../screens/login/login.dart';
 
@@ -18,7 +20,9 @@ class OnBoardingController extends GetxController {
 
   void nextPage() {
     if(currentPageIndex.value == 2) {
-      Get.offAll(const LoginScreen());
+      final storage = GetStorage();
+      storage.write('IsFirstTime', false);
+      Get.offAll(() => const LoginScreen());
     } else {
       int page = currentPageIndex.value + 1;
       pageCotroller.jumpToPage(page);
@@ -28,5 +32,11 @@ class OnBoardingController extends GetxController {
   void skipPage() {
     currentPageIndex.value = 2;
     pageCotroller.jumpToPage(2);
+  }
+
+  @override
+  void onClose() {
+    pageCotroller.dispose();
+    super.onClose();
   }
 }
